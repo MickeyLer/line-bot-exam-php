@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set("Asia/Bangkok");
-
+/*
  $serverName = "localhost";
 
  $userName = "u136290615_user";
@@ -16,12 +16,25 @@ date_default_timezone_set("Asia/Bangkok");
 
  mysqli_set_charset($connect, "utf8");
  $query ="SELECT  name,dueday   FROM sub_autonotify  WHERE  dueday = DAY(NOW())  ";
+*/
 
- $resource = mysqli_query($connect,$query) or  die ("error".mysqli_error());
+	$db = new mysqli("localhost","u136290615_user","HYIegy`b","u136290615_sub");
+	
+	$db->set_charset("utf8");
+	
+	$sql = $db->query("SELECT * FROM Sub_autonotify");
 
- $count_row = mysqli_num_rows($resource);
+	while ($n = $sql->fetch_object()){
+		echo $n->name. "<br />";
+	}
 
-if($count_row > 0) {
+ //
+
+// $resource = mysqli_query($db,$query) or  die ("error".mysqli_error());
+
+// $count_row = mysqli_num_rows($resource);
+
+//if($count_row > 0) {
 
 
 require "vendor/autoload.php";
@@ -40,7 +53,7 @@ $response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
-}
+
 
 
 
