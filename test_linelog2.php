@@ -4,12 +4,8 @@
 	/*Decode Json From LINE Data Body*/
 	$deCode = json_decode($datas,true);
 
-	file_put_contents('log.txt', file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
-
 	$id = $deCode['events'][0]['source']['userId'];
-      $message = $arrayJson['events'][0]['message']['text'];
-	 
-
+      
       $arrayPostData['to'] = $id;
       $arrayPostData['messages'][0]['type'] = "text";
       $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
@@ -19,7 +15,7 @@
 
       $arrayHeader = array();
       $arrayHeader[] = "Content-Type: application/json";
-      $arrayHeader[] = "Authorization: Bearer ME3YfGVoiHzLsnp3pW1XSSFGmDpXoJPJw+b9dyB4c4kynw5eT+7DJeFzL+hgJ/V8VMAliTSYhy5BkI9HRac/69R/gzoz7iSWMVJEDVlFyNktzm+0+/XdB4ZKXPjLfZqwjJDgnHGbx2AXpAmKEU4zpgdB04t89/1O/w1cDnyilFU=";
+      $arrayHeader[] = "Authorization: Bearer 9X89LSe2o0SVcq3UlQZpDgVxMa36OKjDi2GS99Svmthkml2Zf/nB8K5/yxzWq4VOrefvJZQsdHjeBjvLaGozxaU/YJqsKYE0TeeLV7oJgIzWeSEuJ/Ykv7HvXSjCJpTaeJVNuxx/JgZPcqHshvS+LgdB04t89/1O/w1cDnyilFU=";
 
       pushMsg($arrayHeader,$arrayPostData);
    }
