@@ -2,7 +2,7 @@
 
 $json = file_get_contents('php://input');
 $request = json_decode($json, true);
-
+$queryText = $request["queryResult"]["queryText"];
 $userId = $request['originalDetectIntentRequest']['payload']['data']['source']['userId'];
 
 require "vendor/autoload.php";
@@ -16,7 +16,7 @@ $pushID = 'U5bf110dae6585f2fdf72f5f0a3fe9b09';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('รหัสของคุณคือ '.$request);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('รหัสของคุณคือ '.$request.$queryText);
 $response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
