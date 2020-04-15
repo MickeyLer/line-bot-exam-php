@@ -51,7 +51,7 @@ $pushID = 'U5bf110dae6585f2fdf72f5f0a3fe9b09';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('รหัสของคุณคือ '.$result);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('รหัสของคุณคือ '.$result['message']);
 $response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
